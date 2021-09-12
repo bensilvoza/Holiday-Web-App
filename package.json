@@ -1,0 +1,20 @@
+{
+  "name": "holiday",
+  "version": "1.0.0",
+  "description": "Holiday",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ben",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.4",
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "holidayapi": "^5.0.0",
+    "https": "^1.0.0",
+    "mongoose": "^6.0.5"
+  }
+}

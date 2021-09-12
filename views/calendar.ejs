@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- Bootstrap CSS -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+			crossorigin="anonymous"
+		/>
+
+		<title>Holiday</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="/">Home</a>
+			</div>
+		</nav>
+
+		<div class="container">
+			<h1 class="text-center" style="margin-top: 50px;">
+				Holidays
+			</h1>
+
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<h5 class="card-header">January</h5>
+						<div class="card-body">
+							<% for (var i = 0; i < jan_holidays.length; i++){ %>
+							<h5 class="card-title"><%= jan_holidays[i]["holiday_name"] %></h5>
+							<p class="card-text"><%= jan_holidays[i]["date"] %></p>
+							<% } %>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="card">
+						<h5 class="card-header">February</h5>
+						<div class="card-body">
+							<% for (var i = 0; i < feb_holidays.length; i++){ %>
+							<h5 class="card-title"><%= feb_holidays[i]["holiday_name"] %></h5>
+							<p class="card-text"><%= feb_holidays[i]["date"] %></p>
+							<% } %>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="card">
+						<h5 class="card-header">March</h5>
+						<div class="card-body">
+							<% for (var i = 0; i < mar_holidays.length; i++){ %>
+							<h5 class="card-title"><%= mar_holidays[i]["holiday_name"] %></h5>
+							<p class="card-text"><%= mar_holidays[i]["date"] %></p>
+							<% } %>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<br><br>
+			
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<h5 class="card-header">April</h5>
+						<div class="card-body">
+							<% for (var i = 0; i < apr_holidays.length; i++){ %>
+							<h5 class="card-title"><%= apr_holidays[i]["holiday_name"] %></h5>
+							<p class="card-text"><%= apr_holidays[i]["date"] %></p>
+							<% } %>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="card">
+						<h5 class="card-header">May</h5>
+						<div class="card-body">
+							<% for (var i = 0; i < ma_holidays.length; i++){ %>
+							<h5 class="card-title"><%= ma_holidays[i]["holiday_name"] %></h5>
+							<p class="card-text"><%= ma_holidays[i]["date"] %></p>
+							<% } %>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="card">
+						<h5 class="card-header">June</h5>
+						<div class="card-body">
+							<% for (var i = 0; i < jun_holidays.length; i++){ %>
+							<h5 class="card-title"><%= jun_holidays[i]["holiday_name"] %></h5>
+							<p class="card-text"><%= jun_holidays[i]["date"] %></p>
+							<% } %>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<br><br>
+			
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<h5 class="card-header">July</h5>
+						<div class="card-body">
+							<% for (var i = 0; i < jul_holidays.length; i++){ %>
+							<h5 class="card-title"><%= jul_holidays[i]["holiday_name"] %></h5>
+							<p class="card-text"><%= jul_holidays[i]["date"] %></p>
+							<% } %>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="card">
+						<h5 class="card-header">August</h5>
+						<div class="card-body">
+							<% for (var i = 0; i < aug_holidays.length; i++){ %>
+							<h5 class="card-title"><%= aug_holidays[i]["holiday_name"] %></h5>
+							<p class="card-text"><%= aug_holidays[i]["date"] %></p>
+							<% } %>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="card">
+						<h5 class="card-header">September</h5>
+						<div class="card-body">
+							<% for (var i = 0; i < sept_holidays.length; i++){ %>
+							<h5 class="card-title"><%= sept_holidays[i]["holiday_name"] %></h5>
+							<p class="card-text"><%= sept_holidays[i]["date"] %></p>
+							<% } %>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<br><br>
+			
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<h5 class="card-header">October</h5>
+						<div class="card-body">
+							<% for (var i = 0; i < oct_holidays.length; i++){ %>
+							<h5 class="card-title"><%= oct_holidays[i]["holiday_name"] %></h5>
+							<p class="card-text"><%= oct_holidays[i]["date"] %></p>
+							<% } %>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="card">
+						<h5 class="card-header">November</h5>
+						<div class="card-body">
+							<% for (var i = 0; i < nov_holidays.length; i++){ %>
+							<h5 class="card-title"><%= nov_holidays[i]["holiday_name"] %></h5>
+							<p class="card-text"><%= nov_holidays[i]["date"] %></p>
+							<% } %>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="card">
+						<h5 class="card-header">December</h5>
+						<div class="card-body">
+							<% for (var i = 0; i < decem_holidays.length; i++){ %>
+							<h5 class="card-title"><%= decem_holidays[i]["holiday_name"] %></h5>
+							<p class="card-text"><%= decem_holidays[i]["date"] %></p>
+							<% } %>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<br> <br> <br>
+			
+		</div>
+
+		<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+		<!-- Option 1: Bootstrap Bundle with Popper -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+			crossorigin="anonymous"
+		></script>
+	</body>
+</html>
