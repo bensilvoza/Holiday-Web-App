@@ -96,20 +96,7 @@ app.get('/', function (req, res) {
 	var day = dateObj.getUTCDate();
 	var year = dateObj.getUTCFullYear();
 	
-	var months_guide = [
-							'January',
-							'February',
-							'March',
-							'April',
-							'May',
-							'June',
-							'July',
-							'August',
-							'September',
-							'October',
-							'November',
-							'December',
-	];
+	var months_guide = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
 
 	// ==========================================================
@@ -126,11 +113,7 @@ app.get('/', function (req, res) {
 		// =================================================================
 		Is_holidays_inserted.find({}, function (error, inserted_holiday_data) {
 			if (inserted_holiday_data.length === 0) {
-				axios
-					.get(
-						'https://holidayapi.com/v1/holidays?pretty&key=e9bcdc8b-7d0f-41ba-9197-c0ffd7c2c04b&country=PH&year=' +
-							(new Date().getFullYear() - 1)
-					)
+				axios.get('https://holidayapi.com/v1/holidays?pretty&key=e9bcdc8b-7d0f-41ba-9197-c0ffd7c2c04b&country=PH&year=' + (new Date().getFullYear() - 1) )
 					.then(function (response) {
 						holidays = response.data.holidays;
 
@@ -139,66 +122,18 @@ app.get('/', function (req, res) {
 						for (var i = 0; i < holidays.length; i++) {
 							var month = months_guide[Number(holidays[i]['date'].slice(5, 7)) - 1];
 
-							if (month === 'January')
-								var holiday = new January_holidays({
-									holiday_name: holidays[i]['name'],
-									date: holidays[i]['date'],
-								});
-							else if (month === 'February')
-								var holiday = new February_holidays({
-									holiday_name: holidays[i]['name'],
-									date: holidays[i]['date'],
-								});
-							else if (month === 'March')
-								var holiday = new March_holidays({
-									holiday_name: holidays[i]['name'],
-									date: holidays[i]['date'],
-								});
-							else if (month === 'April')
-								var holiday = new April_holidays({
-									holiday_name: holidays[i]['name'],
-									date: holidays[i]['date'],
-								});
-							else if (month === 'May')
-								var holiday = new May_holidays({
-									holiday_name: holidays[i]['name'],
-									date: holidays[i]['date'],
-								});
-							else if (month === 'June')
-								var holiday = new June_holidays({
-									holiday_name: holidays[i]['name'],
-									date: holidays[i]['date'],
-								});
-							else if (month === 'July')
-								var holiday = new July_holidays({
-									holiday_name: holidays[i]['name'],
-									date: holidays[i]['date'],
-								});
-							else if (month === 'August')
-								var holiday = new August_holidays({
-									holiday_name: holidays[i]['name'],
-									date: holidays[i]['date'],
-								});
-							else if (month === 'September')
-								var holiday = new September_holidays({
-									holiday_name: holidays[i]['name'],
-									date: holidays[i]['date'],
-								});
-							else if (month === 'October')
-								var holiday = new October_holidays({
-									holiday_name: holidays[i]['name'],
-									date: holidays[i]['date'],
-								});
-							else if (month === 'November')
-								var holiday = new November_holidays({
-									holiday_name: holidays[i]['name'],
-									date: holidays[i]['date'],
-								});
-							else
-								var holiday = new December_holidays({
-									holiday_name: holidays[i]['name'],
-									date: holidays[i]['date'],
-								});
+							if (month === 'January') var holiday = new January_holidays({holiday_name: holidays[i]['name'], date: holidays[i]['date']});
+							else if (month === 'February') var holiday = new February_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
+							else if (month === 'March') var holiday = new March_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
+							else if (month === 'April') var holiday = new April_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
+							else if (month === 'May') var holiday = new May_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
+							else if (month === 'June') var holiday = new June_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
+							else if (month === 'July') var holiday = new July_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
+							else if (month === 'August') var holiday = new August_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
+							else if (month === 'September') var holiday = new September_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
+							else if (month === 'October') var holiday = new October_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
+							else if (month === 'November') var holiday = new November_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
+							else var holiday = new December_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
 
 							holiday.save();
 						}
@@ -214,38 +149,26 @@ app.get('/', function (req, res) {
 			}
 			// end of if block
 
-			// ============================================
+			// ================================================================
 			// if new year, drop old holidays and then update to a new holidays
-			// ============================================
+			// ================================================================
 			Calendar_year.find({}, function (error, inserted_calendar_year) {
+				
+				// Get date
+	            var dateObj = new Date();
+	            var month = dateObj.getUTCMonth() + 1; //months from 1-12
+	            var day = dateObj.getUTCDate();
+	            var year = dateObj.getUTCFullYear();
+				
 				for (var inserted_calendar_year_data of inserted_calendar_year) {
-					if (inserted_calendar_year_data['calendar_year'] !== year - 1) {
+					if (inserted_calendar_year_data['calendar_year'] !== String (year - 1) ) {
 						// Drop the current database
 						mongoose.connection.db.dropDatabase(function (error) {
 							if (error) console.log(error);
 
-							axios
-								.get(
-									'https://holidayapi.com/v1/holidays?pretty&key=e9bcdc8b-7d0f-41ba-9197-c0ffd7c2c04b&country=PH&year=' +
-										(new Date().getFullYear() - 1)
-								)
+							axios.get('https://holidayapi.com/v1/holidays?pretty&key=e9bcdc8b-7d0f-41ba-9197-c0ffd7c2c04b&country=PH&year=' + (new Date().getFullYear() - 1))
 								.then(function (response) {
 									holidays = response.data.holidays;
-
-									var months_guide = [
-										'January',
-										'February',
-										'March',
-										'April',
-										'May',
-										'June',
-										'July',
-										'August',
-										'September',
-										'October',
-										'November',
-										'December',
-									];
 
 									// save all holidays to database
 									for (var i = 0; i < holidays.length; i++) {
@@ -254,66 +177,18 @@ app.get('/', function (req, res) {
 												Number(holidays[i]['date'].slice(5, 7)) - 1
 											];
 
-										if (month === 'January')
-											var holiday = new January_holidays({
-												holiday_name: holidays[i]['name'],
-												date: holidays[i]['date'],
-											});
-										else if (month === 'February')
-											var holiday = new February_holidays({
-												holiday_name: holidays[i]['name'],
-												date: holidays[i]['date'],
-											});
-										else if (month === 'March')
-											var holiday = new March_holidays({
-												holiday_name: holidays[i]['name'],
-												date: holidays[i]['date'],
-											});
-										else if (month === 'April')
-											var holiday = new April_holidays({
-												holiday_name: holidays[i]['name'],
-												date: holidays[i]['date'],
-											});
-										else if (month === 'May')
-											var holiday = new May_holidays({
-												holiday_name: holidays[i]['name'],
-												date: holidays[i]['date'],
-											});
-										else if (month === 'June')
-											var holiday = new June_holidays({
-												holiday_name: holidays[i]['name'],
-												date: holidays[i]['date'],
-											});
-										else if (month === 'July')
-											var holiday = new July_holidays({
-												holiday_name: holidays[i]['name'],
-												date: holidays[i]['date'],
-											});
-										else if (month === 'August')
-											var holiday = new August_holidays({
-												holiday_name: holidays[i]['name'],
-												date: holidays[i]['date'],
-											});
-										else if (month === 'September')
-											var holiday = new September_holidays({
-												holiday_name: holidays[i]['name'],
-												date: holidays[i]['date'],
-											});
-										else if (month === 'October')
-											var holiday = new October_holidays({
-												holiday_name: holidays[i]['name'],
-												date: holidays[i]['date'],
-											});
-										else if (month === 'November')
-											var holiday = new November_holidays({
-												holiday_name: holidays[i]['name'],
-												date: holidays[i]['date'],
-											});
-										else
-											var holiday = new December_holidays({
-												holiday_name: holidays[i]['name'],
-												date: holidays[i]['date'],
-											});
+										if (month === 'January') var holiday = new January_holidays({holiday_name: holidays[i]['name'], date: holidays[i]['date']});
+							            else if (month === 'February') var holiday = new February_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
+							            else if (month === 'March') var holiday = new March_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
+							            else if (month === 'April') var holiday = new April_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
+							            else if (month === 'May') var holiday = new May_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
+							            else if (month === 'June') var holiday = new June_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
+							            else if (month === 'July') var holiday = new July_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
+							            else if (month === 'August') var holiday = new August_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
+							            else if (month === 'September') var holiday = new September_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
+							            else if (month === 'October') var holiday = new October_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
+							            else if (month === 'November') var holiday = new November_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
+							            else var holiday = new December_holidays({holiday_name: holidays[i]['name'],date: holidays[i]['date']});
 
 										holiday.save();
 									}
@@ -337,18 +212,26 @@ app.get('/', function (req, res) {
 					}
 				}
 				
-				// ===========================
-				// check if today is a holiday
-				// ===========================
-				// Get date
+				
+			// ===========================
+			// check if today is a holiday
+			// ===========================
+				
+			// Get date
 			var dateObj = new Date();
 			var month = dateObj.getUTCMonth() + 1; //months from 1-12
 			var day = dateObj.getUTCDate();
 			var year = dateObj.getUTCFullYear();
 
+			
+			
+			// ==========
 			// Date today
+		    // ==========
+		
 			var date_today = year - 1 + '-' + month + '-' + day;
-
+            //var date_today = "2020-09-22"
+		
 			var is_today_holiday = undefined;
 
 			// check if today is holiday
